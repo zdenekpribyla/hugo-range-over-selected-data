@@ -1,0 +1,8 @@
+- name: product1
+  price: 5
+- name: product2
+  price: 10
+- name: product3
+  price: 6
+- name: product4
+  price: 11

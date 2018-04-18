@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{{ .Title}}</title>
+</head>
+
+<body>
+
+  <p>-------------</p>
+
+  {{ partial "myPartial.html" . }}
+
+  <p>-------------</p>
+
+  {{ .Content }} 
+
+  <p>-------------</p>
+
+</body>
+
+
+</html>

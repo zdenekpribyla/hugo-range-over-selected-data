@@ -1,0 +1,13 @@
+
+<h3>testing of range in PARTIAL</h3>
+
+
+<p><b>range</b> through selected product in <b>params:</b><br>(default range: all products) </p>
+
+
+{{ range .Site.Data.products }}
+
+<li><b>{{ .name }}</b> and price: {{ .price }}</li>
+
+{{ end }}
+
