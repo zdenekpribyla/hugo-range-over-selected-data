@@ -1,11 +1,15 @@
 
 <h3>testing of range in SHORTCODE</h3>
 
-<p> <b>range</b> through selected product in <b>params:</b><br>(default range: all products)</p>
+<h4> <b>range</b> through selected product in <b>params:</b></h4>
 
 
-{{ range .Site.Data.products }}
+<p><i>This code works! Values "product1" and "product3" are directly input here in code. <br>
+<b>It does not work with .Params.product</b></i></p>
 
-<li><b>{{ .name }}</b> and price: {{ .price }}</li>
+{{ $include := (slice "product3" "product1") }}
+{{ range where .Site.Data.products ".name" "in" $include }}
+
+     <li><b>{{ .name }}</b> and price: {{ .price }}</li>
 
 {{ end }}

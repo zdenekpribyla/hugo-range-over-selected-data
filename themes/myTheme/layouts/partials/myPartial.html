@@ -1,13 +1,33 @@
-
-<h3>testing of range in PARTIAL</h3>
-
-
-<p><b>range</b> through selected product in <b>params:</b><br>(default range: all products) </p>
+<h3>
+    testing of range in PARTIAL</h3>
 
 
-{{ range .Site.Data.products }}
+<h4>
+    <b>range</b> through selected product in
+    <b>params:</b>
+    <br>(default range: all products) </h4>
 
-<li><b>{{ .name }}</b> and price: {{ .price }}</li>
+<p>
+    <i><a href="https://discourse.gohugo.io/t/range-data-file-but-only-through-selected-objects/11584/11">Both versions</a> work in .partial.</i></p>
+
+
+
+    <p>Using Values through .Params.product:</p>
+
+    {{ range where .Site.Data.products "name" "in" .Params.product }}
+
+    <li>{{ .name }} and price: {{ .price }}</li>
+    
+    {{ end }}
+
+
+
+<p>Using Values directly put in code:</p>
+
+{{ $include := (slice "product3" "product1") }} 
+{{ range where .Site.Data.products ".name" "in" $include }}
+
+<li>{{ .name }} and price: {{ .price }}</li>
 
 {{ end }}
 

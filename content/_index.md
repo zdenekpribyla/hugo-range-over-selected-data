@@ -1,6 +1,8 @@
 ---
 title: "Title of homepage index"
 draft: false
-product: ["product4", "product1", "product2"]
+product: ["product4", "product2"]
 ---
+
+
 {{< myShortcode >}}
