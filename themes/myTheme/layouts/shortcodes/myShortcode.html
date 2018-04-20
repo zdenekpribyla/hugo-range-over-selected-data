@@ -1,15 +1,32 @@
 
-<h3>testing of range in SHORTCODE</h3>
+<h2>Testing of range in SHORTCODE</h2>
 
-<h4> <b>range</b> through selected product in <b>params:</b></h4>
+<h3>range through selected product in params:</h3>
 
 
-<p><i>This code works! Values "product1" and "product3" are directly input here in code. <br>
-<b>It does not work with .Params.product</b></i></p>
+<p>Values directly put in myShortcode.html. Used origin Hugo sorting:</p>
 
-{{ $include := (slice "product3" "product1") }}
+
+{{ $include := (slice "product3" "product2") }}
 {{ range where .Site.Data.products ".name" "in" $include }}
 
      <li><b>{{ .name }}</b> and price: {{ .price }}</li>
 
 {{ end }}
+
+<p>Values put in .md file and get through .Params.product. Used origin Hugo sorting:</p>
+
+{{ range where .Site.Data.products ".name" "in" $.Page.Params.product }}
+
+     <li><b>{{ .name }}</b> and price: {{ .price }}</li>
+
+{{ end }}
+
+<p>Values put in .md file and get through .Params.product. Used Descending sorting through "rate":</p>
+
+{{ range sort (where .Site.Data.products ".name" "in" $.Page.Params.product) "rating" "desc" }}
+
+     <li><b>{{ .name }}</b> and price: {{ .price }}</li>
+
+{{ end }}
+

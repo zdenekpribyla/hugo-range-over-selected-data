@@ -1,33 +1,29 @@
-<h3>
-    testing of range in PARTIAL</h3>
+<h2>Testing of range in PARTIAL</h3>
 
-
-<h4>
-    <b>range</b> through selected product in
-    <b>params:</b>
-    <br>(default range: all products) </h4>
-
-<p>
-    <i><a href="https://discourse.gohugo.io/t/range-data-file-but-only-through-selected-objects/11584/11">Both versions</a> work in .partial.</i></p>
-
-
-
-    <p>Using Values through .Params.product:</p>
-
-    {{ range where .Site.Data.products "name" "in" .Params.product }}
-
-    <li>{{ .name }} and price: {{ .price }}</li>
+<h3><b>range</b> through selected product in <b>params:</b></h3>
     
-    {{ end }}
+<p>Values directly put in myPartial.html. Used origin Hugo sorting:</p>
 
-
-
-<p>Using Values directly put in code:</p>
-
-{{ $include := (slice "product3" "product1") }} 
+{{ $include := (slice "product3" "product2") }} 
 {{ range where .Site.Data.products ".name" "in" $include }}
 
-<li>{{ .name }} and price: {{ .price }}</li>
+<li><b>{{ .name }}</b> and price: {{ .price }}</li>
+
+{{ end }}
+
+<p>Values put in .md file and get through .Params.product. Used origin Hugo sorting:</p>
+
+{{ range where .Site.Data.products ".name" "in" .Params.product }}
+
+<li><b>{{ .name }}</b> and price: {{ .price }}</li>
+
+{{ end }}
+
+<p>Values put in .md file and get through .Params.product. Used Descending sorting through "rating":</p>
+
+{{ range sort (where .Site.Data.products ".name" "in" .Params.product) "rating" "desc"}}
+
+<li><b>{{ .name }}</b> and price: {{ .price }}</li>
 
 {{ end }}
 
